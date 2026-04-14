@@ -1,13 +1,13 @@
-package com.example.EmployeManagementSystem;
+package com.example.EmployeeManagementSystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication()
-public class EmployeManagementSystemApplication {
+public class EmployeeManagementSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmployeManagementSystemApplication.class, args);
+		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
 	}
 
 }

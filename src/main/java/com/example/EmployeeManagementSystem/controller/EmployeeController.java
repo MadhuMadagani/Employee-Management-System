@@ -1,4 +1,4 @@
-package com.example.EmployeManagementSystem.controller;
+package com.example.EmployeeManagementSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.EmployeManagementSystem.Dto.EmployeeDTO;
-import com.example.EmployeManagementSystem.service.EmployeeService;
+import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
+import com.example.EmployeeManagementSystem.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api/employees")

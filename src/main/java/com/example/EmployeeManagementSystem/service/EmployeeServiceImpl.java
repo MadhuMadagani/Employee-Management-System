@@ -1,4 +1,4 @@
-package com.example.EmployeManagementSystem.service;
+package com.example.EmployeeManagementSystem.service;
 
 
 
@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.EmployeManagementSystem.Dto.EmployeeDTO;
-import com.example.EmployeManagementSystem.entity.Employee;
-import com.example.EmployeManagementSystem.repository.EmployeeRepository;
-import com.example.EmployeManagementSystem.service.EmployeeService;
+import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
+import com.example.EmployeeManagementSystem.entity.Employee;
+import com.example.EmployeeManagementSystem.repository.EmployeeRepository;
+import com.example.EmployeeManagementSystem.service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {

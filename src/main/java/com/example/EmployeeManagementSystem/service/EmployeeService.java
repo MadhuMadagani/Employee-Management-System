@@ -1,11 +1,11 @@
-package com.example.EmployeManagementSystem.service;
+package com.example.EmployeeManagementSystem.service;
 
 
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.example.EmployeManagementSystem.Dto.EmployeeDTO;
+import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
 
 
 public interface EmployeeService {

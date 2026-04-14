@@ -45,12 +45,17 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-
+   
+   <!--H2 Database -->
+          <dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+</dependency>
+   
         <!-- Lombok -->
        <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.18.36</version>
     <scope>provided</scope>
 </dependency>   
 

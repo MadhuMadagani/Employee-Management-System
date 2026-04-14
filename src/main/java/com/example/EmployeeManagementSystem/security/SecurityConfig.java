@@ -1,4 +1,4 @@
-package com.example.EmployeManagementSystem.security;
+package com.example.EmployeeManagementSystem.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +20,8 @@ public class SecurityConfig {
 		http
 		  .csrf(csrf -> csrf.disable())
 		  .authorizeHttpRequests(auth -> auth
-				  .requestMatchers("/auth/**").permitAll()
-				  .requestMatchers("/api/employees/**").authenticated()
+				  .requestMatchers("/h2-console/**").permitAll()
+				  .requestMatchers("/api/**").authenticated()
 				  .anyRequest().permitAll()
 				  )
 		  .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
