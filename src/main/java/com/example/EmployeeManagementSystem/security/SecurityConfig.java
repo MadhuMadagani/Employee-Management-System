@@ -19,7 +19,14 @@ public class SecurityConfig {
 		
 		http
 		  .csrf(csrf -> csrf.disable())
+		  
+		    .formLogin(form -> form.disable())   
+		    .httpBasic(basic -> basic.disable())
+		    
+		    .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+		  
 		  .authorizeHttpRequests(auth -> auth
+				  .requestMatchers("/auth/**").permitAll()
 				  .requestMatchers("/h2-console/**").permitAll()
 				  .requestMatchers("/api/**").authenticated()
 				  .anyRequest().permitAll()

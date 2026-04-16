@@ -17,7 +17,7 @@ import com.example.EmployeeManagementSystem.repository.EmployeeRepository;
 	        	System.out.println("🔥 DataLoader Running...");
 
 	        	
-	            //if (repo.count() == 0) {
+	            if (repo.count() == 0) {
     
 	                // 🔥 MANUAL DATA 
 	                repo.save(new Employee(null,"Madhu","madhu@gmail.com","Developer",30000));
@@ -40,8 +40,9 @@ import com.example.EmployeeManagementSystem.repository.EmployeeRepository;
 	                repo.save(new Employee(null, "Pasha", "pasha@gmail.com", "Developer", 28000));
 	                repo.save(new Employee(null, "Sharukh" , "sharukh@gmil.com", "HR",19000));
 	                repo.save(new Employee(null, "Sai", "sai@gmail.com", "Tester", 27000));
-	            };
+	                repo.deleteAll();   
 	        }
+	        };
 	    }
-	//}
+	}
 
