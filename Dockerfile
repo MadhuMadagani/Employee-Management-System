@@ -1,38 +1,26 @@
 # ----------------------------------------
-# 1. Base Image (Java 17 Runtime)
+# STAGE 1: Build Spring Boot App
 # ----------------------------------------
-# Using Eclipse Temurin official image (recommended instead of OpenJDK)
-# It provides Java runtime needed to run Spring Boot application
-
-FROM eclipse-temurin:17-jdk
-
-# ----------------------------------------
-# 2. Set Working Directory inside container
-# ----------------------------------------
-# All application files will live inside /app folder
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-# ----------------------------------------
-# 3. Copy JAR file into container
-# ----------------------------------------
-# After "mvn clean package", Spring Boot creates a JAR file inside /target
-# We copy that JAR into container and rename it as app.jar
+# Copy full project into container
+COPY . .
 
-COPY target/*.jar app.jar
+# Build JAR file
+RUN mvn clean package -DskipTests
 
 # ----------------------------------------
-# 4. Expose Application Port
+# STAGE 2: Run Application
 # ----------------------------------------
-# Your Spring Boot application runs on port 8081 locally
-# This tells Docker that container listens on 8081
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Copy generated JAR from build stage
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8081
-
-# ----------------------------------------
-# 5. Run the Application
-# ----------------------------------------
-# This command runs when the container starts
-# It executes the Spring Boot JAR file
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
