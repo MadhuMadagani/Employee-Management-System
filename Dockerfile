@@ -1,38 +1,38 @@
-# -------------------------------
-# 1. Base Image
-# -------------------------------
-# We are using OpenJDK 17 as the base environment
-# This provides Java runtime to run Spring Boot application
+# ----------------------------------------
+# 1. Base Image (Java 17 Runtime)
+# ----------------------------------------
+# Using Eclipse Temurin official image (recommended instead of OpenJDK)
+# It provides Java runtime needed to run Spring Boot application
 
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk
 
-# -------------------------------
-# 2. Set Working Directory
-# -------------------------------
-# All commands inside container will run from /app folder
+# ----------------------------------------
+# 2. Set Working Directory inside container
+# ----------------------------------------
+# All application files will live inside /app folder
 
 WORKDIR /app
 
-# -------------------------------
-# 3. Copy Maven Build Output (JAR file)
-# -------------------------------
-# After running "mvn clean package", Spring Boot creates a JAR file inside /target
-# We copy that JAR file into Docker container and rename it as app.jar
+# ----------------------------------------
+# 3. Copy JAR file into container
+# ----------------------------------------
+# After "mvn clean package", Spring Boot creates a JAR file inside /target
+# We copy that JAR into container and rename it as app.jar
 
 COPY target/*.jar app.jar
 
-# -------------------------------
+# ----------------------------------------
 # 4. Expose Application Port
-# -------------------------------
-# Spring Boot runs on port 8080 by default
-# This tells Docker that container listens on port 8080
+# ----------------------------------------
+# Your Spring Boot application runs on port 8081 locally
+# This tells Docker that container listens on 8081
 
-EXPOSE 8080
+EXPOSE 8081
 
-# -------------------------------
+# ----------------------------------------
 # 5. Run the Application
-# -------------------------------
-# This is the command that runs when container starts
+# ----------------------------------------
+# This command runs when the container starts
 # It executes the Spring Boot JAR file
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
