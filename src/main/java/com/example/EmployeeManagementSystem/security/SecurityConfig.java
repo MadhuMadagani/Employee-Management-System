@@ -2,38 +2,45 @@ package com.example.EmployeeManagementSystem.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
-	
-	private  final JwtFilter jwtFilter;
-	
-	public SecurityConfig(JwtFilter jwtFilter) {
-		this.jwtFilter = jwtFilter;
-	}
-	@Bean
-	public SecurityFilterChain filter(HttpSecurity http) throws Exception {
-		
-		http
-		  .csrf(csrf -> csrf.disable())
-		  
-		    .formLogin(form -> form.disable())   
-		    .httpBasic(basic -> basic.disable())
-		    
-		    .headers(headers -> headers.frameOptions(frame -> frame.disable()))
-		  
-		  .authorizeHttpRequests(auth -> auth
-				  .requestMatchers("/auth/**").permitAll()
-				  .requestMatchers("/h2-console/**").permitAll()
-				  .requestMatchers("/api/**").authenticated()
-				  .anyRequest().permitAll()
-				  )
-		  .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-		 return http.build();
-	}
-	
 
+    private final JwtFilter jwtFilter;
+
+    public SecurityConfig(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
+
+    @Bean
+    public SecurityFilterChain filter(HttpSecurity http) throws Exception {
+
+        http
+            .csrf(csrf -> csrf.disable())
+            .formLogin(form -> form.disable())
+            .httpBasic(basic -> basic.disable())
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/").permitAll()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
+
+                
+                .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+
+                // 👇 SECURE WRITE OPERATIONS
+                .requestMatchers("/api/**").authenticated()
+
+                .anyRequest().permitAll()
+            )
+
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
 }
