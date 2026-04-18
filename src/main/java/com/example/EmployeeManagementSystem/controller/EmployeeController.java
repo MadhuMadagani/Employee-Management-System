@@ -20,10 +20,19 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService service ;
 	
-	@GetMapping("/")
+	@GetMapping()
 	public Page<EmployeeDTO> getAll(@RequestParam int page,@RequestParam int size) {
 		return service.getAll(PageRequest.of(page, size));
 	}
+	 @GetMapping("/")
+    public Map<String,String> home() {
+        return Map.of(
+            "project","Employee Management System",
+            "status","LIVE",
+            "message","Application running successfully",
+            "employees","/api/employees"
+        );
+    }
       
 	@PostMapping
 	public EmployeeDTO save(@RequestBody EmployeeDTO dto) {
