@@ -20,7 +20,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService service ;
 	
-	@GetMapping
+	@GetMapping("/")
 	public Page<EmployeeDTO> getAll(@RequestParam int page,@RequestParam int size) {
 		return service.getAll(PageRequest.of(page, size));
 	}
